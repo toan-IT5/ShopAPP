@@ -89,13 +89,52 @@ public class GioHangAdapter extends BaseAdapter {
             viewHolder.btn_TruGH.setVisibility(View.VISIBLE);
         }
 
+        ViewHolder finalViewHolder = viewHolder;
         viewHolder.btn_CongGH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 GioHangModel tmp = MainActivity.arrayListGioHang.get(position);
-                MainActivity.arrayListGioHang.get(position).setSoLuongSanPham(soLuong+1);
-                MainActivity.arrayListGioHang.get(position).setGiaSanPham(tmp.getGiaSanPham()/tmp.getSoLuongSanPham()*(soLuong+1));
+                int soLuongMoi = tmp.getSoLuongSanPham() +1 ;
+                long giaCu = tmp.getGiaSanPham();
+                long giaMoi = giaCu/tmp.getSoLuongSanPham()*soLuongMoi;
+                MainActivity.arrayListGioHang.get(position).setSoLuongSanPham(soLuongMoi);
+                MainActivity.arrayListGioHang.get(position).setGiaSanPham(giaMoi);
+                DecimalFormat decimalFormat = new DecimalFormat ("###,###,###" ) ;
+                finalViewHolder.txt_GiaGH.setText(decimalFormat.format (gioHang.getGiaSanPham()) + " Ð");
+                GioHang.EventUltil();
+                if (soLuongMoi > 4){
+                    finalViewHolder.btn_CongGH.setVisibility(View.INVISIBLE);
+                    finalViewHolder.btn_TruGH.setVisibility(View.VISIBLE);
+                    finalViewHolder.btn_GiaTriGH.setText(soLuongMoi + "");
+                }else{
+                    finalViewHolder.btn_CongGH.setVisibility(View.VISIBLE);
+                    finalViewHolder.btn_TruGH.setVisibility(View.VISIBLE);
+                    finalViewHolder.btn_GiaTriGH.setText(soLuongMoi + "");
+                }
+
+            }
+        });
+        viewHolder.btn_TruGH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GioHangModel tmp = MainActivity.arrayListGioHang.get(position);
+                int soLuongMoi = tmp.getSoLuongSanPham() -1 ;
+                long giaCu = tmp.getGiaSanPham();
+                long giaMoi = giaCu/tmp.getSoLuongSanPham()*soLuongMoi;
+                MainActivity.arrayListGioHang.get(position).setSoLuongSanPham(soLuongMoi);
+                MainActivity.arrayListGioHang.get(position).setGiaSanPham(giaMoi);
+                DecimalFormat decimalFormat = new DecimalFormat ("###,###,###" ) ;
+                finalViewHolder.txt_GiaGH.setText(decimalFormat.format (gioHang.getGiaSanPham()) + " Ð");
+                GioHang.EventUltil();
+                if (soLuongMoi < 2){
+                    finalViewHolder.btn_CongGH.setVisibility(View.VISIBLE);
+                    finalViewHolder.btn_TruGH.setVisibility(View.INVISIBLE);
+                    finalViewHolder.btn_GiaTriGH.setText(soLuongMoi + "");
+                }else{
+                    finalViewHolder.btn_CongGH.setVisibility(View.VISIBLE);
+                    finalViewHolder.btn_TruGH.setVisibility(View.VISIBLE);
+                    finalViewHolder.btn_GiaTriGH.setText(soLuongMoi + "");
+                }
             }
         });
 

@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 if (position > 0 && position <= arrayListLoaiSP.size()){
                     Intent intent = new Intent(getApplicationContext(),SanPhamActyvity.class);
                     intent.putExtra("maLoaiSanPham",arrayListLoaiSP.get(position).getId());
+                    intent.putExtra("tenLoaiSanPham",arrayListLoaiSP.get(position).getTenLoaiSanPham());
                     startActivity(intent);
                 }
 

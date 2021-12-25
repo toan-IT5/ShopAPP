@@ -28,7 +28,7 @@
                 android:text="Giỏ hàng bạn đang trống"
                 android:textSize="20sp"/>
 
-            <ListView
+            <com.baoyz.swipemenulistview.SwipeMenuListView
                 android:id="@+id/lv_GioHang"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
