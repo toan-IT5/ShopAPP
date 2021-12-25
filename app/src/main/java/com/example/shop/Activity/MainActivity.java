@@ -1,5 +1,6 @@
 package com.example.shop.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -9,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,7 +21,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -27,6 +28,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.shop.Adapter.LoaiSPAdapter;
 import com.example.shop.Adapter.SanPhamAdapter;
+import com.example.shop.Model.GioHangModel;
 import com.example.shop.Model.LoaiSP;
 import com.example.shop.Model.SanPham;
 import com.example.shop.R;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     LoaiSPAdapter loaiSPAdapter;
     ArrayList<SanPham> arrayListSanPhamMoiNhat;
     SanPhamAdapter sanPhamAdapter;
+    public static ArrayList<GioHangModel> arrayListGioHang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +66,22 @@ public class MainActivity extends AppCompatActivity {
         getDuLieuSanPhamMoiNhat();
         ActionViewFliper();
         CaschOnItemListView();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menuGH:
+                Intent intent = new Intent(getApplicationContext(), GioHang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void CaschOnItemListView() {
@@ -118,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
         });
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
     }
-
 
     private void getDuLieuLoaiSP() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -199,5 +217,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setAdapter(sanPhamAdapter);
+        if( arrayListGioHang == null)
+            arrayListGioHang = new ArrayList<>();
     }
 }
