@@ -13,6 +13,12 @@
         android:theme="@style/Theme.SHOP"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.CustomerInformation"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.GioHang"
+            android:exported="false" />
+        <activity
             android:name=".Activity.ChiTietSanPham"
             android:exported="false" />
         <activity

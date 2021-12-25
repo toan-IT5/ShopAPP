@@ -1,5 +1,6 @@
 package com.example.shop.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -50,13 +53,31 @@ public class SanPhamActyvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_san_pham_actyvity);
-        getIDType();
+
         anhXa();
+        getIDType();
         ActionToolBar();
         GetData(page);
         LoadMoreData();
     }
+    // Tạo memu giỏ hàng
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menuGH:
+                Intent intent = new Intent(getApplicationContext(), GioHang.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Load thêm dữ liệu cho listView
     private void LoadMoreData() {
         lv_SanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,6 +104,7 @@ public class SanPhamActyvity extends AppCompatActivity {
         });
     }
 
+    // lấy dữ liệu
     private void GetData(int Page) {
         String url = Server.DuongDanSanPham + page;
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -132,6 +154,7 @@ public class SanPhamActyvity extends AppCompatActivity {
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
+    // Tạo và bắt sự kiện nút trở về
     private void ActionToolBar() {
         setSupportActionBar(toolbarSP);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -144,11 +167,17 @@ public class SanPhamActyvity extends AppCompatActivity {
 
     }
 
+    //Lấy dữ liệu loại sản phẩm từ MainActivity
+
     private void getIDType() {
         idType = getIntent().getExtras().getInt("maLoaiSanPham");
+        CharSequence tmp = getIntent().getExtras().getString("tenLoaiSanPham");
+        toolbarSP.setTitle(tmp);
     }
 
+    //Tìm ID dữ liệu
     private void anhXa() {
+
         toolbarSP = findViewById(R.id.toolBarSanPham);
         lv_SanPham = findViewById(R.id.lv_SanPham);
         arrayListSanPham = new ArrayList<>();
