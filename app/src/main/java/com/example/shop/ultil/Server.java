@@ -9,5 +9,6 @@ public class Server {
 
     public static String DuongDanSanPham = "http://"+localHost+"/server/getproductbytype.php?page=";
     public static String CustomerInformationLink = "http://"+localHost+"/server/thongtinkhachhang.php";
+    public static String OrderDetailsLink = "http://"+localHost+"/server/chitietdonhang.php";
 
 }

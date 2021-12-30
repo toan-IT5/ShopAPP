@@ -69,7 +69,7 @@ public class SanPhamActyvity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch(item.getItemId()){
             case R.id.menuGH:
                 Intent intent = new Intent(getApplicationContext(), GioHang.class);
                 startActivity(intent);

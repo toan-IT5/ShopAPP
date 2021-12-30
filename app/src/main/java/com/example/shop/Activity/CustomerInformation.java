@@ -66,7 +66,9 @@ public class CustomerInformation extends AppCompatActivity {
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.CustomerInformationLink, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Toast.makeText(getApplicationContext(), ""+ response, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(), ""+ response, Toast.LENGTH_SHORT).show();
+                            if (Integer.parseInt(response) > 0 )
+
                             finish();
                         }
                     }, new Response.ErrorListener() {
@@ -89,6 +91,23 @@ public class CustomerInformation extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void postOrderDetail(){
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, Server.OrderDetailsLink, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            
+        };
     }
 
     private void mapping() {
