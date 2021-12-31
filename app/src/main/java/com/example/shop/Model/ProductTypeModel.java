@@ -1,17 +1,17 @@
 package com.example.shop.Model;
 
-public class LoaiSP {
+public class ProductTypeModel {
     public int Id;
     public String TenLoaiSanPham;
     public String HinhAnhLoaiSanPham;
 
-    public LoaiSP(int id, String tenLoaiSanPham, String hinhAnhLoaiSanPham) {
+    public ProductTypeModel(int id, String tenLoaiSanPham, String hinhAnhLoaiSanPham) {
         Id = id;
         TenLoaiSanPham = tenLoaiSanPham;
         HinhAnhLoaiSanPham = hinhAnhLoaiSanPham;
     }
 
-    public LoaiSP() {
+    public ProductTypeModel() {
     }
 
     public int getId() {

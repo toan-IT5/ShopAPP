@@ -26,11 +26,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.shop.Adapter.LoaiSPAdapter;
-import com.example.shop.Adapter.SanPhamAdapter;
-import com.example.shop.Model.GioHangModel;
-import com.example.shop.Model.LoaiSP;
-import com.example.shop.Model.SanPham;
+import com.example.shop.Adapter.ProductTypeAdapter;
+import com.example.shop.Adapter.ProductAdapter;
+import com.example.shop.Model.CartModel;
+import com.example.shop.Model.ProductTypeModel;
+import com.example.shop.Model.ProductModel;
 import com.example.shop.R;
 import com.example.shop.ultil.MySingleton;
 import com.example.shop.ultil.Server;
@@ -51,19 +51,19 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     ListView listView;
     DrawerLayout drawerLayout;
-    ArrayList<LoaiSP> arrayListLoaiSP;
-    LoaiSPAdapter loaiSPAdapter;
-    ArrayList<SanPham> arrayListSanPhamMoiNhat;
-    SanPhamAdapter sanPhamAdapter;
-    public static ArrayList<GioHangModel> arrayListGioHang;
+    ArrayList<ProductTypeModel> arrayListLoaiSP;
+    ProductTypeAdapter productTypeAdapter;
+    ArrayList<ProductModel> arrayListSanPhamMoiNhat;
+    ProductAdapter sanPhamAdapter;
+    public static ArrayList<CartModel> arrayListGioHang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        anhXa();
+        mapping();
         Actionbar();
-        getDuLieuLoaiSP();
-        getDuLieuSanPhamMoiNhat();
+        getProductType();
+        getTheLatestProducts();
         ActionViewFliper();
         CaschOnItemListView();
     }
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuGH:
-                Intent intent = new Intent(getApplicationContext(), GioHang.class);
+                Intent intent = new Intent(getApplicationContext(), Cart.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -93,10 +93,14 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     drawerLayout.closeDrawer(GravityCompat.START);
                 }
-                if (position > 0 && position <= arrayListLoaiSP.size()){
-                    Intent intent = new Intent(getApplicationContext(),SanPhamActyvity.class);
+                if (position > 0 && position < arrayListLoaiSP.size()-1 ){
+                    Intent intent = new Intent(getApplicationContext(), ProductActyvity.class);
                     intent.putExtra("maLoaiSanPham",arrayListLoaiSP.get(position).getId());
                     intent.putExtra("tenLoaiSanPham",arrayListLoaiSP.get(position).getTenLoaiSanPham());
+                    startActivity(intent);
+                }
+                if (position == arrayListLoaiSP.size()-1){
+                    Intent intent = new Intent(MainActivity.this, StoreInformation.class);
                     startActivity(intent);
                 }
 
@@ -104,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getDuLieuSanPhamMoiNhat() {
+    private void getTheLatestProducts() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonArrayRequest request = new JsonArrayRequest(Server.DuongDanSanPhamMoiNhat, new Response.Listener<JSONArray>() {
+        JsonArrayRequest request = new JsonArrayRequest(Server.LatestProductLinks, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 if (response != null){
@@ -115,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                            // Toast.makeText(getApplicationContext(),""+response,Toast.LENGTH_LONG).show();
                             JSONObject jsonObject = response.getJSONObject(i);
 
-                            SanPham tmp = new SanPham(jsonObject.getInt("id"),
+                            ProductModel tmp = new ProductModel(jsonObject.getInt("id"),
                                     jsonObject.getString("tensanpham"),
                                     jsonObject.getInt("giasanpham"),
                                     jsonObject.getString("hinhanhsanpham"),
@@ -139,28 +143,29 @@ public class MainActivity extends AppCompatActivity {
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
     }
 
-    private void getDuLieuLoaiSP() {
+    private void getProductType() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonArrayRequest request = new JsonArrayRequest(Server.DuongDan, new Response.Listener<JSONArray>() {
+        JsonArrayRequest request = new JsonArrayRequest(Server.ProductTypeLink, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 if (response != null){
-                    arrayListLoaiSP.add(new LoaiSP(0,"Trang chủ","https://khinenthuanhung.vn/wp-content/uploads/2018/02/Home-icon.png"));
-                    loaiSPAdapter.notifyDataSetChanged();
+                    arrayListLoaiSP.add(new ProductTypeModel(0,"Trang chủ","https://khinenthuanhung.vn/wp-content/uploads/2018/02/Home-icon.png"));
+                    productTypeAdapter.notifyDataSetChanged();
                     for (int i = 0; i<response.length(); i++){
                         try {
                            // Toast.makeText(getApplicationContext(),""+response,Toast.LENGTH_LONG).show();
                             JSONObject jsonObject = response.getJSONObject(i);
-                            LoaiSP tmp = new LoaiSP();
+                            ProductTypeModel tmp = new ProductTypeModel();
                             tmp.Id = jsonObject.getInt("id");
                             tmp.TenLoaiSanPham = jsonObject.getString("tenloaisanpham");
                             tmp.HinhAnhLoaiSanPham = jsonObject.getString("hinhanhloaisanpham");
                             arrayListLoaiSP.add(tmp);
-                            loaiSPAdapter.notifyDataSetChanged();
+                            productTypeAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+                    arrayListLoaiSP.add(new ProductTypeModel(arrayListLoaiSP.size(),"Địa chỉ", "https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/344/4a90e2/external-map-logistic-delivery-kiranshastry-lineal-color-kiranshastry.png"));
                 }
             }
         }, new Response.ErrorListener() {
@@ -203,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void anhXa() {
+    private void mapping() {
         toolbar = findViewById(R.id.toolBarMHC);
         viewFlipper = findViewById(R.id.viewFlipperMHC);
         recyclerView = findViewById(R.id.recyclerViewSanPham);
@@ -211,10 +216,10 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.listViewMHC);
         drawerLayout = findViewById(R.id.drawerLayoutMHC);
         arrayListLoaiSP = new ArrayList<>();
-        loaiSPAdapter = new LoaiSPAdapter(arrayListLoaiSP,getApplicationContext());
-        listView.setAdapter(loaiSPAdapter);
+        productTypeAdapter = new ProductTypeAdapter(arrayListLoaiSP,getApplicationContext());
+        listView.setAdapter(productTypeAdapter);
         arrayListSanPhamMoiNhat = new ArrayList<>();
-        sanPhamAdapter = new SanPhamAdapter(getApplicationContext(),arrayListSanPhamMoiNhat);
+        sanPhamAdapter = new ProductAdapter(getApplicationContext(),arrayListSanPhamMoiNhat);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerView.setAdapter(sanPhamAdapter);

@@ -2,7 +2,6 @@ package com.example.shop.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +13,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shop.Activity.ChiTietSanPham;
-import com.example.shop.Model.SanPham;
+import com.example.shop.Activity.ProductDetails;
+import com.example.shop.Model.ProductModel;
 import com.example.shop.R;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ItemHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ItemHolder> {
     Context context;
-    ArrayList<SanPham> arrayListSanPham;
+    ArrayList<ProductModel> arrayListSanPham;
 
-    public SanPhamAdapter(Context context, ArrayList<SanPham> arrayListSanPham) {
+    public ProductAdapter(Context context, ArrayList<ProductModel> arrayListSanPham) {
         this.context = context;
         this.arrayListSanPham = arrayListSanPham;
     }
@@ -42,8 +41,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ItemHold
 
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
-        SanPham sanPham = arrayListSanPham.get(position);
-        holder.txtGiaSanPham.setMaxLines(2);
+        ProductModel sanPham = arrayListSanPham.get(position);
+        holder.txtTenSanPham.setMaxLines(2);
         holder.txtTenSanPham.setEllipsize(TextUtils.TruncateAt.END);
         holder.txtTenSanPham.setText(sanPham.getTenSanPham());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
@@ -69,7 +68,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ItemHold
                 @Override
                 public void onClick(View v) {
                     Intent view = new Intent();
-                    Intent intent = new Intent(context, ChiTietSanPham.class);
+                    Intent intent = new Intent(context, ProductDetails.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("thongtinsanpham", arrayListSanPham.get(getLayoutPosition()));
                     Toast.makeText(context,""+getLayoutPosition(), Toast.LENGTH_LONG).show();
