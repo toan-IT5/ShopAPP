@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -58,17 +60,8 @@ public class CustomerInformation extends AppCompatActivity {
                 final String email = til_Email.getEditText().getText().toString().trim();
                 final String phone = til_Phone.getEditText().getText().toString().trim();
 
-                if (name.length() <= 0){
-                    til_Name.setError("Vui lòng nhập tên của bạn!");
-                }else til_Name.setError("");
-                if (email.length() <= 0){
-                    til_Name.setError("Vui lòng nhập tên của bạn!");
-                }else til_Name.setError("");
-                if (phone.length() <= 0){
-                    til_Name.setError("Vui lòng nhập tên của bạn!");
-                }else til_Name.setError("");
 
-                if (name.length() > 0 && email.length() > 0 && phone.length() > 0 ){
+                if (name.length() > 0 && email.length() > 0 && phone.length() > 0 && checkDataInput(name, email, phone)){
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.CustomerInformationLink, new Response.Listener<String>() {
                         @Override
@@ -97,6 +90,29 @@ public class CustomerInformation extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean checkDataInput(String name, String email, String phone) {
+        if (name.length() <= 0){
+            til_Name.setError("Vui lòng nhập tên của bạn!");
+            return false;
+        }else til_Name.setError("");
+        if (email.length() <= 0){
+            til_Name.setError("Vui lòng nhập tên của bạn!");
+            return false;
+        }else til_Name.setError("");
+        if (phone.length() <= 0){
+            til_Name.setError("Vui lòng nhập tên của bạn!");
+            return false;
+        }else til_Name.setError("");
+        if (isValidEmail(email)){
+            til_Email.setError("Địa chỉ email không chính xác!");
+            return false;
+        } else til_Email.setError("");
+        return true;
+    }
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
     private void postOrderDetail(String response){

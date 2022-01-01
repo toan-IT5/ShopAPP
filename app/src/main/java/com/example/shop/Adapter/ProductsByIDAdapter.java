@@ -51,7 +51,7 @@ public class ProductsByIDAdapter extends BaseAdapter {
         if (convertView == null){
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.san_pham_by_type, null);
+            convertView = inflater.inflate(R.layout.item_product_by_type, null);
 
             viewHolder.txtTenSanPham = convertView.findViewById(R.id.txtTenSanPhamByType);
             viewHolder.txtGiaSanPham = convertView.findViewById(R.id.txtGiaSanPhamByType);

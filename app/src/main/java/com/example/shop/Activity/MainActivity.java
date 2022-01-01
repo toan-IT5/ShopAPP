@@ -179,9 +179,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void ActionViewFliper() {
         ArrayList<String> arrayListQC= new ArrayList<>();
-        arrayListQC.add("https://img.thuthuattinhoc.vn/uploads/2019/01/08/anh-anime-boy-dep-nhat_101905549.jpg");
-        arrayListQC.add("https://tinviet365.net/wp-content/uploads/2020/04/T%E1%BB%95ng-h%E1%BB%A3p-nh%E1%BB%AFng-h%C3%ACnh-%E1%BA%A3nh-anime-%C4%91%E1%BA%B9p-nh%E1%BA%A5t-th%E1%BA%BF-gi%E1%BB%9Bi-%E1%BA%A5n-t%C6%B0%E1%BB%A3ng.jpg");
-        arrayListQC.add("https://dbk.vn/uploads/ckfinder/images/tranh-anh/anh-anime-nam-29.jpg");
+        arrayListQC.add("https://cellphones.com.vn/sforum/wp-content/uploads/2020/08/OPPO-F17-1.jpg");
+        arrayListQC.add("https://photo-cms-sggp.zadn.vn/w580/Uploaded/2021/yfsgf/2020_09_24/hinh11_mzad.jpg");
+        arrayListQC.add("https://cellphones.com.vn/sforum/wp-content/uploads/2019/05/Honor-20-Pro-lo-anh-quang-cao-1.jpg");
         for (int i =0; i < arrayListQC.size(); i++){
             ImageView imageView = new ImageView(getApplicationContext());
             Picasso.with(getApplicationContext()).load(arrayListQC.get(i)).into(imageView);

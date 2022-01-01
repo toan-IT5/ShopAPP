@@ -48,7 +48,7 @@ public class ProductTypeAdapter extends BaseAdapter {
         if (convertView == null){
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_loaisp, null);
+            convertView = inflater.inflate(R.layout.item_product_type, null);
             viewHolder.txtTenLoaiSP = convertView.findViewById(R.id.txtTenLoaiSP);
             viewHolder.imgLoaiSP = convertView.findViewById(R.id.imageLoaiSP);
 

@@ -52,7 +52,7 @@ public class ProductActyvity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_san_pham_actyvity);
+        setContentView(R.layout.activity_product);
 
         mapping();
         getIDType();

@@ -32,7 +32,7 @@ public class Cart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gio_hang);
+        setContentView(R.layout.activity_cart);
         anhXa();
         ActionToolBar();
         CheckListView();
