@@ -9,18 +9,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.shop.Model.SanPham;
+import com.example.shop.Model.ProductModel;
 import com.example.shop.R;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class SanPhamByIDAdapter extends BaseAdapter {
+public class ProductsByIDAdapter extends BaseAdapter {
     Context context;
-    ArrayList<SanPham> arrayListSanPham;
+    ArrayList<ProductModel> arrayListSanPham;
 
-    public SanPhamByIDAdapter(Context context, ArrayList<SanPham> arrayListSanPham) {
+    public ProductsByIDAdapter(Context context, ArrayList<ProductModel> arrayListSanPham) {
         this.context = context;
         this.arrayListSanPham = arrayListSanPham;
     }
@@ -51,7 +51,7 @@ public class SanPhamByIDAdapter extends BaseAdapter {
         if (convertView == null){
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.san_pham_by_type, null);
+            convertView = inflater.inflate(R.layout.item_product_by_type, null);
 
             viewHolder.txtTenSanPham = convertView.findViewById(R.id.txtTenSanPhamByType);
             viewHolder.txtGiaSanPham = convertView.findViewById(R.id.txtGiaSanPhamByType);
@@ -64,7 +64,7 @@ public class SanPhamByIDAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        SanPham sanPham = (SanPham) getItem(position);
+        ProductModel sanPham = (ProductModel) getItem(position);
         viewHolder.txtTenSanPham.setMaxLines(1);
         viewHolder.txtTenSanPham.setEllipsize(TextUtils.TruncateAt.END);
         viewHolder.txtTenSanPham.setText(sanPham.getTenSanPham());

@@ -8,17 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.shop.Model.LoaiSP;
+import com.example.shop.Model.ProductTypeModel;
 import com.example.shop.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class LoaiSPAdapter extends BaseAdapter {
-    ArrayList<LoaiSP> arrayList;
+public class ProductTypeAdapter extends BaseAdapter {
+    ArrayList<ProductTypeModel> arrayList;
     Context context;
 
-    public LoaiSPAdapter(ArrayList<LoaiSP> arrayList, Context context) {
+    public ProductTypeAdapter(ArrayList<ProductTypeModel> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -48,7 +48,7 @@ public class LoaiSPAdapter extends BaseAdapter {
         if (convertView == null){
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_loaisp, null);
+            convertView = inflater.inflate(R.layout.item_product_type, null);
             viewHolder.txtTenLoaiSP = convertView.findViewById(R.id.txtTenLoaiSP);
             viewHolder.imgLoaiSP = convertView.findViewById(R.id.imageLoaiSP);
 
@@ -57,7 +57,7 @@ public class LoaiSPAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
 
         }
-        LoaiSP loaiSP = (LoaiSP) getItem(position);
+        ProductTypeModel loaiSP = (ProductTypeModel) getItem(position);
         viewHolder.txtTenLoaiSP.setText(loaiSP.getTenLoaiSanPham() );
         Picasso.with(context).load(loaiSP.getHinhAnhLoaiSanPham()).placeholder(R.drawable.loading).error(R.drawable.error).into(viewHolder.imgLoaiSP);
 

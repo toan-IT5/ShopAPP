@@ -1,16 +1,16 @@
 package com.example.shop.Model;
 
-public class GioHangModel {
+public class CartModel {
     public int idSanPham;
     public String tenSanPham;
     public long giaSanPham;
     public String hinhSanPham;
     public int SoLuongSanPham;
 
-    public GioHangModel() {
+    public CartModel() {
     }
 
-    public GioHangModel(int idSanPham, String tenSanPham, long giaSanPham, String hinhSanPham, int soLuongSanPham) {
+    public CartModel(int idSanPham, String tenSanPham, long giaSanPham, String hinhSanPham, int soLuongSanPham) {
         this.idSanPham = idSanPham;
         this.tenSanPham = tenSanPham;
         this.giaSanPham = giaSanPham;

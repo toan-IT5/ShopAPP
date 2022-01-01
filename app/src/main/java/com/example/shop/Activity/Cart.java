@@ -1,6 +1,5 @@
 package com.example.shop.Activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -9,10 +8,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,24 +17,22 @@ import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.example.shop.Adapter.GioHangAdapter;
+import com.example.shop.Adapter.CartAdapter;
 import com.example.shop.R;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 
-public class GioHang extends AppCompatActivity {
+public class Cart extends AppCompatActivity {
     SwipeMenuListView lv_GioHang;
     TextView txt_ThongBao ;
     static EditText et_GiaTriGH;
     Button btn_TiepTucMuaHang,btn_MuaHang;
     Toolbar toolBarGH;
-    GioHangAdapter gioHangAdapter;
+    CartAdapter gioHangAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gio_hang);
+        setContentView(R.layout.activity_cart);
         anhXa();
         ActionToolBar();
         CheckListView();
@@ -147,7 +142,7 @@ public class GioHang extends AppCompatActivity {
         btn_TiepTucMuaHang = findViewById(R.id.btn_TiepTucMuaHang);
         btn_MuaHang = findViewById(R.id.btn_MuaHang);
         toolBarGH = findViewById(R.id.toolBarGH);
-        gioHangAdapter = new GioHangAdapter(GioHang.this, MainActivity.arrayListGioHang);
+        gioHangAdapter = new CartAdapter(Cart.this, MainActivity.arrayListGioHang);
         lv_GioHang.setAdapter(gioHangAdapter);
 
     }

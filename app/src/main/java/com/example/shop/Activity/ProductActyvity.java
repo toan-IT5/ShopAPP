@@ -24,8 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.shop.Adapter.SanPhamByIDAdapter;
-import com.example.shop.Model.SanPham;
+import com.example.shop.Adapter.ProductsByIDAdapter;
+import com.example.shop.Model.ProductModel;
 import com.example.shop.R;
 import com.example.shop.ultil.MySingleton;
 import com.example.shop.ultil.Server;
@@ -38,12 +38,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SanPhamActyvity extends AppCompatActivity {
+public class ProductActyvity extends AppCompatActivity {
     int page = 1;
     Toolbar toolbarSP;
     ListView lv_SanPham;
-    SanPhamByIDAdapter sanPhamByIDAdapter;
-    ArrayList<SanPham> arrayListSanPham;
+    ProductsByIDAdapter sanPhamByIDAdapter;
+    ArrayList<ProductModel> arrayListSanPham;
     int idType = 0;
     View footerView;
     boolean isLoading = false;
@@ -52,12 +52,12 @@ public class SanPhamActyvity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_san_pham_actyvity);
+        setContentView(R.layout.activity_product);
 
-        anhXa();
+        mapping();
         getIDType();
         ActionToolBar();
-        GetData(page);
+        getProduct(page);
         LoadMoreData();
     }
     // Tạo memu giỏ hàng
@@ -71,7 +71,7 @@ public class SanPhamActyvity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.menuGH:
-                Intent intent = new Intent(getApplicationContext(), GioHang.class);
+                Intent intent = new Intent(getApplicationContext(), Cart.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -82,7 +82,7 @@ public class SanPhamActyvity extends AppCompatActivity {
         lv_SanPham.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(),ChiTietSanPham.class);
+                Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
                 intent.putExtra("thongtinsanpham", arrayListSanPham.get(position));
                 startActivity(intent);
             }
@@ -105,8 +105,8 @@ public class SanPhamActyvity extends AppCompatActivity {
     }
 
     // lấy dữ liệu
-    private void GetData(int Page) {
-        String url = Server.DuongDanSanPham + page;
+    private void getProduct(int Page) {
+        String url = Server.ProductLink + page;
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -118,7 +118,7 @@ public class SanPhamActyvity extends AppCompatActivity {
                         JSONArray jsonArray = new JSONArray(response);
                         for (int i = 0; i<jsonArray.length(); i++){
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            SanPham tmp = new SanPham(jsonObject.getInt("id"),
+                            ProductModel tmp = new ProductModel(jsonObject.getInt("id"),
                                     jsonObject.getString("tensanpham"),
                                     jsonObject.getInt("giasanpham"),
                                     jsonObject.getString("hinhanhsanpham"),
@@ -176,12 +176,12 @@ public class SanPhamActyvity extends AppCompatActivity {
     }
 
     //Tìm ID dữ liệu
-    private void anhXa() {
+    private void mapping() {
 
         toolbarSP = findViewById(R.id.toolBarSanPham);
         lv_SanPham = findViewById(R.id.lv_SanPham);
         arrayListSanPham = new ArrayList<>();
-        sanPhamByIDAdapter = new SanPhamByIDAdapter(getApplicationContext(), arrayListSanPham);
+        sanPhamByIDAdapter = new ProductsByIDAdapter(getApplicationContext(), arrayListSanPham);
         lv_SanPham.setAdapter(sanPhamByIDAdapter);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         footerView = inflater.inflate(R.layout.progressbar,null);
@@ -196,7 +196,7 @@ public class SanPhamActyvity extends AppCompatActivity {
                     lv_SanPham.addFooterView(footerView);
                     break;
                 case 1:
-                    GetData(++page);
+                    getProduct(++page);
                     isLoading = false;
                     break;
             }

@@ -14,14 +14,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.shop.Model.GioHangModel;
-import com.example.shop.Model.SanPham;
+import com.example.shop.Model.CartModel;
+import com.example.shop.Model.ProductModel;
 import com.example.shop.R;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 
-public class ChiTietSanPham extends AppCompatActivity {
+public class ProductDetails extends AppCompatActivity {
     Toolbar toolbarChitiet;
     ImageView imgChitiet;
     TextView txtten, txtgia, txtmota;
@@ -31,7 +31,7 @@ public class ChiTietSanPham extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chi_tiet_san_pham);
+        setContentView(R.layout.activity_product_details);
         anhXa();
         actionToolBar();
         getInformation();
@@ -48,7 +48,7 @@ public class ChiTietSanPham extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuGH:
-                Intent intent = new Intent(getApplicationContext(), GioHang.class);
+                Intent intent = new Intent(getApplicationContext(), Cart.class);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -59,7 +59,7 @@ public class ChiTietSanPham extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                    SanPham sanPham= getInformation();
+                    ProductModel sanPham= getInformation();
                     boolean exit = false;
                     if (MainActivity.arrayListGioHang.size() > 0){
                         for (int i = 0 ; i < MainActivity.arrayListGioHang.size() ; i++){
@@ -70,21 +70,21 @@ public class ChiTietSanPham extends AppCompatActivity {
                             }
                         }
                         if (exit == false)
-                            MainActivity.arrayListGioHang.add(new GioHangModel(sanPham.getID(),sanPham.getTenSanPham(), sanPham.getGiaSanPham(), sanPham.getHinhAnhSanPham(),1));
+                            MainActivity.arrayListGioHang.add(new CartModel(sanPham.getID(),sanPham.getTenSanPham(), sanPham.getGiaSanPham(), sanPham.getHinhAnhSanPham(),1));
                     }else {
 
-                        MainActivity.arrayListGioHang.add(new GioHangModel(sanPham.getID(),sanPham.getTenSanPham(), sanPham.getGiaSanPham(), sanPham.getHinhAnhSanPham(),1));
+                        MainActivity.arrayListGioHang.add(new CartModel(sanPham.getID(),sanPham.getTenSanPham(), sanPham.getGiaSanPham(), sanPham.getHinhAnhSanPham(),1));
                     }
-                    Intent intent = new Intent(getApplicationContext(), GioHang.class);
+                    Intent intent = new Intent(getApplicationContext(), Cart.class);
                     startActivity(intent);
             }
         });
     }
 
     @SuppressLint("SetTextI18n")
-    private SanPham getInformation() {
+    private ProductModel getInformation() {
 
-        SanPham sanpham = (SanPham) getIntent().getSerializableExtra("thongtinsanpham");
+        ProductModel sanpham = (ProductModel) getIntent().getSerializableExtra("thongtinsanpham");
 
         txtten.setText(sanpham.getTenSanPham());
         giaCTSP = sanpham.getGiaSanPham();
