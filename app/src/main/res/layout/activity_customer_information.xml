@@ -7,14 +7,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/custommer_infomation_background"
     tools:context=".Activity.CustomerInformation">
+    <ImageView
+        android:src="@drawable/user"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp">
 
+    </ImageView>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="80dp"
         android:background="@drawable/booder"
         android:orientation="vertical">
 
@@ -90,12 +93,15 @@
                 android:layout_width="wrap_content"
                 android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#2196F3"
                 android:text="Xác nhận" />
 
             <Button
                 android:id="@+id/btn_Thoat"
                 android:layout_width="wrap_content"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/red"
                 android:layout_height="wrap_content"
                 android:text="Thoát" />
         </LinearLayout>
