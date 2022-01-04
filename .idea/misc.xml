@@ -14,6 +14,7 @@
         <entry key="..\:/Users/Toan/AndroidStudioProjects/SHOP/app/src/main/res/layout/progressbar.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/SHOP/app/src/main/res/layout/san_pham_by_type.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/drawable/booder.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/drawable/color_in_main.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/drawable/custom_editext.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/drawable/custommer_infomation_background.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/drawable/ic_person.xml" value="0.37864583333333335" />
@@ -21,14 +22,21 @@
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/drawable/item_product_latest_new_stype.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/drawable/spinner.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/font/stype.xml" value="0.3927083333333333" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_cart.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_chi_tiet_san_pham.xml" value="0.3625" />
-        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_customer_information.xml" value="0.25" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_customer_information.xml" value="0.33" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_gio_hang.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_product.xml" value="0.3625" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_product_details.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_san_pham_actyvity.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/activity_store_information.xml" value="0.3625" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/item_cart.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/item_gio_hang.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/item_loaisp.xml" value="0.3625" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/item_product_by_type.xml" value="0.3625" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/item_product_new.xml" value="0.3625" />
+        <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/item_product_type.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/item_san_pham_moi.xml" value="0.3625" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/progressbar.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/Toan/AndroidStudioProjects/ShopAPP/app/src/main/res/layout/san_pham_by_type.xml" value="0.3625" />

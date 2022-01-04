@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -220,8 +221,13 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(productTypeAdapter);
         arrayListSanPhamMoiNhat = new ArrayList<>();
         sanPhamAdapter = new ProductAdapter(getApplicationContext(),arrayListSanPhamMoiNhat);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        RecyclerView.ItemDecoration itemDecoration1 = new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL);
+        recyclerView.addItemDecoration(itemDecoration);
+        recyclerView.addItemDecoration(itemDecoration1);
         recyclerView.setAdapter(sanPhamAdapter);
         if( arrayListGioHang == null)
             arrayListGioHang = new ArrayList<>();

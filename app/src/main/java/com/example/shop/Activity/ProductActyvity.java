@@ -187,7 +187,6 @@ public class ProductActyvity extends AppCompatActivity {
         footerView = inflater.inflate(R.layout.progressbar,null);
         mHandler = new mHandler();
     }
-
     public class mHandler extends Handler{
         @Override
         public void handleMessage (Message msg){

@@ -93,23 +93,26 @@ public class CustomerInformation extends AppCompatActivity {
     }
 
     private boolean checkDataInput(String name, String email, String phone) {
+        boolean kt = true;
         if (name.length() <= 0){
             til_Name.setError("Vui lòng nhập tên của bạn!");
-            return false;
+            kt = false;
         }else til_Name.setError("");
+
         if (email.length() <= 0){
             til_Name.setError("Vui lòng nhập tên của bạn!");
-            return false;
-        }else til_Name.setError("");
+            kt = false;
+        }else if (email.length() > 0 && !isValidEmail(email)){
+            til_Email.setError("Địa chỉ email không chính xác!");
+            kt = false;
+        } else til_Email.setError("");
+
         if (phone.length() <= 0){
             til_Name.setError("Vui lòng nhập tên của bạn!");
-            return false;
+            kt = false;
         }else til_Name.setError("");
-        if (isValidEmail(email)){
-            til_Email.setError("Địa chỉ email không chính xác!");
-            return false;
-        } else til_Email.setError("");
-        return true;
+
+        return kt;
     }
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
